@@ -2,6 +2,12 @@
 
 use App\Http\Controllers\api\CourseController;
 use App\Http\Controllers\api\RegisterController;
+use App\Http\Controllers\api\LoginController;
+use App\Http\Controllers\api\CommentController;
+use App\Http\Controllers\api\VideoController;
+use App\Http\Controllers\api\PartVideoController;
+use App\Http\Controllers\api\SearchController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,3 +29,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('courses', CourseController::class);
 
 Route::apiResource('register', RegisterController::class);
+
+Route::apiResource('login', LoginController::class);
+
+Route::apiResource('comments', CommentController::class);
+
+Route::apiResource('videos', VideoController::class);
+
+Route::apiResource('part-videos', PartVideoController::class);
+
+Route::apiResource('search', SearchController::class);
+
+
+

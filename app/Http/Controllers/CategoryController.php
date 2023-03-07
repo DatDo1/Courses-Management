@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CategoryController extends Controller
 {
@@ -42,8 +43,12 @@ class CategoryController extends Controller
     {
         $inputData = $request->all();
         $category = Category::create($inputData);
-        if($category){
-            
+        if ($category){
+            Alert::success('Success', 'Create Category Successfully!!');
+            return redirect()->back();
+        }else {
+            Alert::error('Error', 'Create Category Failurefully!!');
+            return redirect('admin.category.CreateCategory');
         }
     }
 

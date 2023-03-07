@@ -9,6 +9,7 @@ class Video extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $table = 'videos';
     public function partsVideo(){
         return $this->hasMany(PartsVideo::class);

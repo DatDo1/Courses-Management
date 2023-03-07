@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\api;
 
-use App\Models\Account;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Hash;
 
-class LoginController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +15,7 @@ class LoginController extends Controller
      */
     public function index()
     {
-        return Account::all();
+        return Comment::all();
     }
 
     /**
@@ -27,32 +26,7 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-        $accountList = Account::all();
-        $inputData = $request->all();
-
-        $username = $inputData['username'];
-        $password = $inputData['password'];
-
-        foreach ($accountList as $account) {
-            if($username == $account['username']) {
-                if(Hash::check($password, $account->password)) {
-                    return response()->json([
-                        'status' => 'true',
-                        'message' => 'Login Successfully!!',
-                        'userID' => $account['id']
-                    ],200);
-                }else {
-                    return response()->json([
-                        'status' => 'false',
-                        'message' => 'Wrong Password!!'
-                    ],400);
-                }
-            }   
-        }
-        return response()->json([
-            'status' => 'false',
-            'message' => 'Wrong Username!!'
-        ],400);
+        //
     }
 
     /**

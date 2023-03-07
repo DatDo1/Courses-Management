@@ -18,6 +18,7 @@
 </head>
 
 <body>
+    @include('sweetalert::alert')
     <div class="container-scroller">
         <!-- partial:../../../admin/partials/_navbar.html -->
 
@@ -40,11 +41,11 @@
                             <div class='form-group'>
                             <h1 style='font-size: 30px;'>Create Category</h1><br>
                                 <label for='exampleInputID1'>ID</label>
-                                <input type='text' name='idCategory' class='form-control' id='exampleInputID1' placeholder='ID'>
+                                <input type='text' name='id' class='form-control' id='exampleInputID1' placeholder='ID'>
                             </div>
                             <div class='form-group'>
                                 <label for='exampleInputName1'>Name</label>
-                                <input type='text' name='nameCategory' class='form-control' id='exampleInputUsername1' placeholder='Name'>
+                                <input type='text' name='name' class='form-control' id='exampleInputUsername1' placeholder='Name'>
                             </div>
                             
                             <div class='form-check form-check-flat form-check-primary'>
