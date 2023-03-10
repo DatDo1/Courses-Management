@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Create Videos</title>
+    <title>Edit Video</title>
     <!-- base:css -->
     <link rel="stylesheet" href="../../admin/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../../admin/vendors/feather/feather.css">
@@ -32,34 +32,35 @@
             <div class="col-10 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{route('storeVideo')}}" method="post">
+                        <form action="{{route('updateVideo')}}" method="post">
                             @csrf
-                            <h4 class="card-title">Create Videos</h4>
+                            <h4 class="card-title">Edit Video</h4>
+                            <input type="hidden" name="id" value="{{$video->id}}">
                             <div class='form-group'>
                                 <label for='exampleInputTitle1'>Title</label>
-                                <input name='title'  type='text' class='form-control' id='exampleInputTitle1' placeholder='Title'>
+                                <input value='{{$video->title}}' name='title'  type='text' class='form-control' id='exampleInputTitle1' placeholder='Title'>
                             </div>
                             <div class='form-group'>
                                 <label for='exampleInputDescription2'>Description</label>
-                                <textarea name='description' class='form-control' id='exampleInputDescription2' rows='4'></textarea>
+                                <textarea name='description' class='form-control' id='exampleInputDescription2' rows='4'>{{$video->description}}'</textarea>
                             </div>
                             <div class='form-group'>
                                 <label for='exampleInputLink3'>Link</label>
-                                <input name='link' type='link' class='form-control' id='exampleInputLink3' placeholder='Link'>
+                                <input value='{{$video->link}}' name='link' type='link' class='form-control' id='exampleInputLink3' placeholder='Link'>
                             </div>
                             <div class='form-group'>
                                 <label for='exampleDuration4'>Duration</label>
-                                <input name='duration'  type='text' class='form-control' id='exampleDuration4' placeholder='Duration'>
+                                <input value='{{$video->duration}}' name='duration'  type='text' class='form-control' id='exampleDuration4' placeholder='Duration'>
                             </div>
                             <div class='form-group'>
                                 <label for='exampleDatePosted5'>Date Posted</label>
-                                <input name='date_posted'  type='text' class='form-control' id='exampleDatePosted5' placeholder='Date Posted'>
+                                <input value='{{$video->date_posted}}' name='date_posted'  type='text' class='form-control' id='exampleDatePosted5' placeholder='Date Posted'>
                             </div>
                             <div class='form-group'>
                                 <label for='examplePartVideo6'>Part Video</label>
                                 <select name ='part_id' style="width:100%; padding:2px 0 ;text-transform: none !important; background-color: #ffffff; opacity: 1.5; color:#000000 !important; font-size: 14px;">
                                 @foreach ($partsVideoList as $partVideo)
-                                    <option value='{{$partVideo->id}}'>{{$partVideo->name}}</option>
+                                    <option value='{{$partVideo->id}}'>{{$partVideo->name}} - {{$partVideo->course->name}} - {{$partVideo->course->category->name}}</option>
                                 @endforeach
                                 </select>
                             </div>          

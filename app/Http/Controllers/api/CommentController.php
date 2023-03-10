@@ -26,7 +26,13 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $inputData = $request->all();
+        $comment = Comment::create($inputData);
+        return response()->json([
+            'status' => true,
+            'message'=>"Tạo bình luận thành công",
+            'data' => $comment
+        ],201);
     }
 
     /**

@@ -18,7 +18,7 @@
 </head>
 
 <body>
-  
+  @include('sweetalert::alert')
   <div class="container-scroller">
     <!-- partial:../../admin/partials/_navbar.html -->
 
@@ -95,14 +95,21 @@
                         </tr>
                       </thead>
                       <tbody>
+                        @foreach($categoryList as $category)
                         <tr>
-                        <td>id</td>
-                        <td>name</td>
-                        <td>
-                    <button name = 'edit' value ='id' class='btn btn-success'><b class='mdi mdi-upload btn-icon-prepend'>Sửa</b></button>
-                    <button name = 'delete' value = 'id' class='btn btn-danger'><b class='mdi mdi-alert btn-icon-prepend'>Xóa</b></button>
-                  </td>
+                          <td>{{$category->id}}</td>
+                          <td>{{$category->name}}</td>
+
+                          <td>
+                            <a href="category/{{$category->id}}" value='id' class='btn btn-success'><b class='mdi mdi-upload btn-icon-prepend'>Sửa</b></a>
+                            <form action="category/{{$category->id}}/delete" method="post">
+                              @csrf 
+                              @method('DELETE')
+                              <button value='id' class='btn btn-danger'><b class='mdi mdi-alert btn-icon-prepend'>Xóa</b></button>
+                            </form>
+                          </td>
                         </tr>
+                        @endforeach
                       </tbody>
                     </table>
                   </div>

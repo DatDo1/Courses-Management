@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Comment;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Account extends Model
 {
@@ -19,5 +20,9 @@ class Account extends Model
     public $timestamps = false;
     public function role(){
         return $this->belongsTo(Role::class);
+    }
+
+    public function comment(){
+        return $this->hasMany(Comment::class);
     }
 }

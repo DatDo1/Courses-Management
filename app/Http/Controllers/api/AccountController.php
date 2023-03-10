@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
 use App\Models\Account;
 use Illuminate\Http\Request;
@@ -15,22 +15,7 @@ class AccountController extends Controller
      */
     public function index()
     {
-        $accountList = Account::all();
-        if (session('email')){
-            return view('admin.account.ListAccount', compact('accountList'));
-        }else {
-            return redirect('admin/login');
-        }
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        
+        //
     }
 
     /**
@@ -41,7 +26,7 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-        
+        return Account::find($request->id);
     }
 
     /**
@@ -51,17 +36,6 @@ class AccountController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
     {
         //
     }

@@ -11,8 +11,18 @@ class Video extends Model
 
     public $timestamps = false;
     protected $table = 'videos';
-    public function partsVideo(){
-        return $this->hasMany(PartsVideo::class);
+    protected $fillable = [
+        'title',
+        'description',
+        'link',
+        'duration',
+        'date_posted',
+        'part_id',
+    ];
+    public function partsvideo(){
+        return $this->belongsTo(PartsVideo::class, 'part_id');
     }
-
+    public function comment(){
+        return $this->hasMany(Comment::class);
+    }
 }

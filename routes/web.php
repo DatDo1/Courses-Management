@@ -44,16 +44,30 @@ Route::get('/admin/list-account', [AccountController::class, 'index'])->name('li
 Route::get('admin/list-category', [CategoryController::class, 'index'])->name('listCategory');
 Route::get('admin/create-category', [CategoryController::class, 'create'])->name('createCategory');
 Route::post('admin/create-category', [CategoryController::class, 'store'])->name('storeCategory');
-
+Route::get('admin/category/{id}', [CategoryController::class, 'edit']);
+Route::post('admin/category', [CategoryController::class, 'update'])->name('updateCategory');
+Route::delete('admin/category/{id}/delete', [CategoryController::class, 'destroy'])->name('deleteCategory');
 
 // Course
 Route::get('admin/list-course', [CourseController::class, 'index'])->name('listCourse');
 Route::get('admin/create-course', [CourseController::class, 'create'])->name('createCourse');
+Route::post('admin/create-course', [CourseController::class, 'store'])->name('storeCourse');
+Route::get('admin/course/{id}', [CourseController::class, 'edit']);
+Route::post('admin/course', [CourseController::class, 'update'])->name('updateCourse');
+Route::delete('admin/course/{id}/delete', [CourseController::class, 'destroy'])->name('deleteCourse');
 
 // Video
 Route::get('admin/list-video', [VideoController::class, 'index'])->name('listVideo');
 Route::get('admin/create-video', [VideoController::class, 'create'])->name('createVideo');
+Route::post('admin/create-video', [VideoController::class, 'store'])->name('storeVideo');
+Route::get('admin/video/{id}', [VideoController::class, 'edit']);
+Route::post('admin/video', [VideoController::class, 'update'])->name('updateVideo');
+Route::delete('admin/video/{id}/delete', [VideoController::class, 'destroy'])->name('deleteVideo');
 
 //Part Video
 Route::get('admin/list-part-video', [PartVideoController::class, 'index'])->name('listPartVideo');
 Route::get('admin/create-part-video', [PartVideoController::class, 'create'])->name('createPartVideo');
+Route::post('admin/create-part-video', [PartVideoController::class, 'store'])->name('storePartVideo');
+Route::get('admin/part-video/{id}', [PartVideoController::class, 'edit']);
+Route::post('admin/part-video', [PartVideoController::class, 'update'])->name('updatePartVideo');
+Route::delete('admin/part-video/{id}/delete', [PartVideoController::class, 'destroy'])->name('deletePartVideo');

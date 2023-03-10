@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PartsVideo;
+use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class VideoController extends Controller
 {
@@ -14,8 +17,9 @@ class VideoController extends Controller
      */
     public function index()
     {
+        $videoList = Video::all();
         if (session('email')){
-            return view('admin.videos.ListVideos');
+            return view('admin.videos.ListVideos', compact('videoList'));
         }else {
             return redirect('admin/login');
         }
@@ -28,7 +32,8 @@ class VideoController extends Controller
      */
     public function create()
     {
-        return View('admin.videos.CreateVideos');
+        $partsVideoList = PartsVideo::all();
+        return View('admin.videos.CreateVideos', compact('partsVideoList'));
     }
 
     /**
@@ -39,7 +44,15 @@ class VideoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $inputData = $request->all();
+        $video = Video::create($inputData);
+        if ($video){
+            Alert::success('Success', 'Create Video Successfully!!');
+            return redirect('admin/list-video');
+        }else {
+            Alert::error('Error', 'Create Video Failurefully!!');
+            return redirect('admin/create-video');
+        }
     }
 
     /**
@@ -61,7 +74,9 @@ class VideoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $video = Video::find($id);
+        $partsVideoList = PartsVideo::all();
+        return View('admin.videos.EditVideo', compact('video','partsVideoList'));
     }
 
     /**
@@ -71,9 +86,16 @@ class VideoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $inputData = $request->all();
+        $video = Video::find($request->id);
+        if($video->update($inputData)){
+            return redirect('admin/list-video');
+        }else{
+            $pVList = PartsVideo::all();
+            return View('admin.videos.EditVideo', compact('video','pVList'));
+        }
     }
 
     /**
@@ -84,6 +106,13 @@ class VideoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $video = Video::find($id);
+        if($video->delete()){
+            Alert::success('Delete Video Successfully');
+            return redirect('admin/list-video');
+        }else {
+            Alert::error('Delete Video Failurefully');
+            return redirect('admin/list-video');
+        }
     }
 }

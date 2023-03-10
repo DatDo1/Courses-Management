@@ -8,9 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class PartsVideo extends Model
 {
     use HasFactory;
-
+    protected $fillable = [
+        'id',
+        'name',
+        'course_id',
+    ];
     protected $table = 'parts_video';
+    public $incrementing = false;
+    public $timestamps = false;
     public function video(){
-        return $this->belongsTo(Video::class);
+        return $this->hasMany(Video::class);
+    }
+    public function course(){
+        return $this->belongsTo(Course::class);
     }
 }

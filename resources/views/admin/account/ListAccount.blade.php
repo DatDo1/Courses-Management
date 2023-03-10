@@ -97,13 +97,15 @@
                         </tr>
                       </thead>
                       <tbody>
+                        @foreach ($accountList as $user)
                         <tr>
-                        <td>LamJay12</td>
-                        <td>Lam@gmail.com</td>
-                        <td>Tran</td>
-                        <td>Lam</td>
-                        <td>Hehehe</td>
+                          <td>{{$user->username}}</td>
+                          <td>{{$user->email}}</td>
+                          <td>{{$user->first_name}}</td>
+                          <td>{{$user->last_name}}</td>
+                          <td>{{$user->avatar}}</td>
                         </tr> 
+                        @endforeach
                      </tbody>
                     </table>
                   </div>

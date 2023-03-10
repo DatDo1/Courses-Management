@@ -18,6 +18,7 @@
 </head>
 
 <body>
+  @include('sweetalert::alert')
   <div class="container-scroller">
     <!-- partial:../../admin/partials/_navbar.html -->
 
@@ -97,15 +98,21 @@
                         </tr>
                       </thead>
                       <tbody>
+                        @foreach($pvList as $pv)
                         <tr>
-                        <td>id</td>
-                        <td>name</td>
-                        <td>12</td>
-                        <td>
-                    <button name = 'edit' value ='id' class='btn btn-success'><b class='mdi mdi-upload btn-icon-prepend'>Sửa</b></button>
-                    <button name = 'delete' value = 'id' class='btn btn-danger'><b class='mdi mdi-alert btn-icon-prepend'>Xóa</b></button>
-                  </td>
+                          <td>{{$pv->id}}</td>
+                          <td>{{$pv->name}}</td>
+                          <td>{{$pv->course->name}}</td>
+                          <td>
+                            <a href="part-video/{{$pv->id}}" value='id' class='btn btn-success'><b class='mdi mdi-upload btn-icon-prepend'>Sửa</b></a>
+                            <form action="part-video/{{$pv->id}}/delete" method="post">
+                              @csrf 
+                              @method('DELETE')
+                              <button value='id' class='btn btn-danger'><b class='mdi mdi-alert btn-icon-prepend'>Xóa</b></button>
+                            </form>
+                          </td>
                         </tr>
+                        @endforeach
                       </tbody>
                     </table>
                   </div>

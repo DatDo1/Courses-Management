@@ -1,15 +1,16 @@
 <?php
 
-use App\Http\Controllers\api\CourseController;
-use App\Http\Controllers\api\RegisterController;
-use App\Http\Controllers\api\LoginController;
-use App\Http\Controllers\api\CommentController;
-use App\Http\Controllers\api\VideoController;
-use App\Http\Controllers\api\PartVideoController;
-use App\Http\Controllers\api\SearchController;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\api\LoginController;
+use App\Http\Controllers\api\VideoController;
+use App\Http\Controllers\api\CourseController;
+use App\Http\Controllers\api\SearchController;
+use App\Http\Controllers\api\AccountController;
+
+use App\Http\Controllers\api\CommentController;
+use App\Http\Controllers\api\RegisterController;
+use App\Http\Controllers\api\PartVideoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,8 @@ Route::apiResource('videos', VideoController::class);
 Route::apiResource('part-videos', PartVideoController::class);
 
 Route::apiResource('search', SearchController::class);
+
+Route::apiResource('account', AccountController::class);
 
 
 

@@ -18,6 +18,7 @@
 </head>
 
 <body>
+  @include('sweetalert::alert')
   <div class="container-scroller">
     <!-- partial:../../admin/partials/_navbar.html -->
     
@@ -100,18 +101,24 @@
                         </tr>
                       </thead>
                       <tbody>
+                        @foreach ($videoList as $video)
                         <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                    <button name = 'edit' value ='id' class='btn btn-success'><b class='mdi mdi-upload btn-icon-prepend'>Sửa</b></button>
-                    <button name = 'delete' value = 'id' class='btn btn-danger'><b class='mdi mdi-alert btn-icon-prepend'>Xóa</b></button>
-                  </td>
-                          </tr>
+                          <td>{{$video->title}}</td>
+                          <td>{{$video->description}}</td>
+                          <td>{{$video->link}}</td>
+                          <td>{{$video->duration}}</td>
+                          <td>{{$video->date_posted	}}</td>
+                          <td>{{$video->partsvideo->name}}</td>
+                          <td>
+                            <a href="video/{{$video->id}}" value='id' class='btn btn-success'><b class='mdi mdi-upload btn-icon-prepend'>Sửa</b></a>
+                            <form action="video/{{$video->id}}/delete" method="post">
+                              @csrf 
+                              @method('DELETE')
+                              <button value='id' class='btn btn-danger'><b class='mdi mdi-alert btn-icon-prepend'>Xóa</b></button>
+                            </form>
+                          </td>
+                          @endforeach
+                        </tr>
                       </tbody>
                     </table>
                   </div>

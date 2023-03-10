@@ -14,6 +14,7 @@ class Category extends Model
         'name'
     ];
     protected $table = 'categories';
+    public $incrementing = false;
     public $timestamps = false;
 
     public function course(){

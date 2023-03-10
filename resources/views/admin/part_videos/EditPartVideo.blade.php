@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Create Part Videos</title>
+    <title>Edit Part Videos</title>
     <!-- base:css -->
     <link rel="stylesheet" href="../../admin/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../../admin/vendors/feather/feather.css">
@@ -31,16 +31,16 @@
             <div class="col-md-10 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{route('storePartVideo')}}" method="post">
+                        <form action="{{route('updatePartVideo')}}" method="post">
                             @csrf
                             <div class='form-group'>
-                            <h1 style='font-size: 30px;'>Create Part Videos</h1> <br>
+                            <h1 style='font-size: 30px;'>Edit Part Videos</h1> <br>
                                 <label for='exampleInputID1'>ID</label>
-                                <input name='id' type='text' class='form-control' id='exampleInputID1' placeholder='ID'>
+                                <input value='{{$pvideo->id}}' name='id' type='text' class='form-control' id='exampleInputID1' placeholder='ID'>
                             </div>
                             <div class='form-group'>
                                 <label for='exampleInputName1'>Name</label>
-                                <input name='name' type='text' class='form-control' id='exampleInputUsername1' placeholder='Name'>
+                                <input value='{{$pvideo->name}}' name='name' type='text' class='form-control' id='exampleInputUsername1' placeholder='Name'>
                             </div>
                             <div class='form-group'>
                                 <label for='exampleInputCourses_id1'>Courses</label>

@@ -16,8 +16,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        $categoryList = Category::all();
         if (session('email')){
-            return view('admin.category.ListCategory');
+            return view('admin.category.ListCategory', compact('categoryList'));
         }else {
             return redirect('admin/login');
         }
@@ -45,10 +46,10 @@ class CategoryController extends Controller
         $category = Category::create($inputData);
         if ($category){
             Alert::success('Success', 'Create Category Successfully!!');
-            return redirect()->back();
+            return redirect('admin/list-category');
         }else {
             Alert::error('Error', 'Create Category Failurefully!!');
-            return redirect('admin.category.CreateCategory');
+            return redirect('admin/create-category');
         }
     }
 
@@ -71,7 +72,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cate = Category::find($id);
+        return View('admin.category.EditCategory',compact('cate'));
     }
 
     /**
@@ -81,9 +83,15 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $inputData = $request->all();
+        $cate = Category::find($request->id);
+        if($cate->update($inputData)){
+            return redirect('admin/list-category');
+        }else{
+            return View('admin.courses.EditCategory', compact('cate'));
+        }
     }
 
     /**
@@ -94,6 +102,18 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $course = Category::find($id);
+            if($course->delete()){
+                Alert::success('Delete Category Successfully');
+                return redirect('admin/list-category');
+             }else {
+                Alert::error('Delete Category Failurefully');
+                return redirect('admin/list-category');
+            }
+        } catch (\Throwable $th) {
+            Alert::warning('Constraints Foreign Key');
+            return redirect('admin/list-category');
+        }
     }
 }

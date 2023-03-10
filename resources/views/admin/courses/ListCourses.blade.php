@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Product</title>
+  <title>List Course</title>
   <!-- base:css -->
   <link rel="stylesheet" href="../../admin/vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="../../admin/vendors/feather/feather.css">
@@ -18,7 +18,7 @@
 </head>
 
 <body>
-
+  @include('sweetalert::alert')
   <div class="container-scroller">
     <!-- partial:../../admin/partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -91,8 +91,8 @@
                       <thead>
                         <tr>
                           <th>Name</th>
-                          <th>Price</th>
-                          <th>Price Sale</th>
+                          <th>Price ($)</th>
+                          <th>Price Sale ($)</th>
                           <th>Description</th>
                           <th>Images</th>
                           <th>Category</th>
@@ -100,18 +100,24 @@
                         </tr>
                       </thead>
                       <tbody>
-                <tr>
-                  <td></td>
-                  <td>100$</td>
-                  <td>10$</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>
-                    <button name = 'edit' value = 'id' class='btn btn-success'><b class='mdi mdi-upload btn-icon-prepend'>Sửa</b></button>
-                    <button name = 'delete' value = 'id' class='btn btn-danger'><b class='mdi mdi-alert btn-icon-prepend'>Xóa</b></button>
-                  </td>
-                </tr>
+                        @foreach ($listCourse as $course)
+                        <tr>
+                          <td>{{$course->name}}</td>
+                          <td>{{$course->price}}</td>
+                          <td>{{$course->price_sale}}</td>
+                          <td>{{$course->description}}</td>
+                          <td>{{$course->image}}</td>
+                          <td>{{$course->category->name}}</td>
+                          <td>
+                            <a href="course/{{$course->id}}" value='id' class='btn btn-success'><b class='mdi mdi-upload btn-icon-prepend'>Sửa</b></a>
+                            <form action="course/{{$course->id}}/delete" method="post">
+                              @csrf 
+                              @method('DELETE')
+                              <button value='id' class='btn btn-danger'><b class='mdi mdi-alert btn-icon-prepend'>Xóa</b></button>
+                            </form>
+                          </td>
+                        </tr>
+                        @endforeach
                       </tbody>
                     </table>
                   </div>

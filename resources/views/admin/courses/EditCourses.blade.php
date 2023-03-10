@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Create Courses</title>
+    <title>Edit Courses</title>
     <!-- base:css -->
     <link rel="stylesheet" href="../../../admin/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../../../admin/vendors/feather/feather.css">
@@ -33,35 +33,36 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <h4 class="card-title">Create Courses</h4>
-                        <form action="{{route('storeCourse')}}" method="post" enctype="multipart/form-data">
+                        <h4 class="card-title">Edit Courses</h4>
+                        <form action="{{route('updateCourse')}}" method="post" enctype="multipart/form-data">
                             @csrf
+                            <input type="hidden" name="id" value="{{$course->id}}">
                             <div class='form-group'>
                                 <label for='exampleInputName2'>Name Courses</label>
-                                <input name='name'  type='text' class='form-control' id='exampleInputName1' placeholder='Name Courses'>
+                                <input value="{{$course->name}}" name='name'  type='text' class='form-control' id='exampleInputName1' placeholder='Name Courses'>
                             </div>
                             <div class='form-group'>
                                 <label for='exampleInputPrice3'>Price</label>
-                                <input name='price' type='text' class='form-control' id='exampleInputEmail3' placeholder='Price'>
+                                <input value="{{$course->price}}" name='price' type='text' class='form-control' id='exampleInputEmail3' placeholder='Price'>
                             </div>
                             <div class='form-group'>
                                 <label for='exampleInputColor4'>Price Sale</label>
-                                <input name='price_sale' type='text' class='form-control' id='exampleInputPassword4' placeholder='Price Sale'>
+                                <input value="{{$course->price_sale}}" name='price_sale' type='text' class='form-control' id='exampleInputPassword4' placeholder='Price Sale'>
                             </div>
                             <div class='form-group'>
                                 <label for='exampleDescribe1'>Describe</label>
-                                <textarea name='description' class='form-control' id='exampleTextarea1' rows='8'></textarea>
+                                <textarea name='description' class='form-control' id='exampleTextarea1' rows='8'>{{$course->description}}</textarea>
                             </div>
                             <div class='form-group'>
                                 <label for='exampleDescribe1'>Category Courses</label>
                                 <select name='category_id' style='width:100%; padding:2px 0 ;text-transform: none !important; background-color: #ffffff; opacity: 0.5; color:#000000 !important; font-size: 14px;'>
-                                @foreach($cateList as $cate)
-                                    <option value='{{$cate->id}}'>{{$cate->name}}</option>
-                                @endforeach
+                                    @foreach($cateList as $cate)
+                                        <option value='{{$cate->id}}'>{{$cate->name}}</option>
+                                     @endforeach
                                 </select>
                             </div>
                             <div class='form-group'>
-                                <label>File upload</label>
+                                <label>File upload - {{$course->image}}</label>
                                 <input name='image' type='file' class='file-upload-default'>
                                 <div class='input-group col-xs-12'>
                                     <input style='height:100%' type='text' class='form-control file-upload-info' disabled placeholder='Upload Image'>
@@ -70,8 +71,8 @@
                                     </span>
                                 </div>
                             </div>
-                            
-                            <input  name='add' type='submit' class='btn btn-primary mr-2' value='Save'/>
+                
+                            <input type='submit' class='btn btn-primary mr-2' value='Save'/>
                             <a href='{{route('listCourse')}}' type='submit' class='btn btn-light'>Cancel</a>
                         </form>
                     </div>

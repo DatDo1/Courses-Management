@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\api;
 
+use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
@@ -25,7 +26,12 @@ class SearchController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $courseList = Course::where('name','LIKE','%'.$request->name.'%')->get();
+        return response()->json([
+            'status' => 'true',
+            'message' => 'Danh sách khóa học',
+            'data' => $courseList
+        ],200);
     }
 
     /**
@@ -60,5 +66,10 @@ class SearchController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        
     }
 }
