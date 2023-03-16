@@ -11,7 +11,7 @@ use App\Http\Controllers\api\AccountController;
 use App\Http\Controllers\api\CommentController;
 use App\Http\Controllers\api\RegisterController;
 use App\Http\Controllers\api\PartVideoController;
-
+use App\Http\Controllers\api\ResetPasswordController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -37,11 +37,13 @@ Route::apiResource('comments', CommentController::class);
 
 Route::apiResource('videos', VideoController::class);
 
-Route::apiResource('part-videos', PartVideoController::class);
+Route::apiResource('parts-video', PartVideoController::class);
 
 Route::apiResource('search', SearchController::class);
 
 Route::apiResource('account', AccountController::class);
+Route::post('check-email', [AccountController::class, 'checkEmail']);
 
-
+Route::post('reset-password', [ResetPasswordController::class, 'sendMail']);
+Route::put('reset-password/{token}', [ResetPasswordController::class, 'reset']);
 

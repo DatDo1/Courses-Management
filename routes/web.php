@@ -25,8 +25,8 @@ use App\Http\Controllers\PartVideoController;
 */
 
 // Register
-Route::get('/admin/register', [RegisterController::class, 'index']);
-Route::post('/admin/register', [RegisterController::class, 'store'])->name('adminRegister');
+// Route::get('/admin/register', [RegisterController::class, 'index']);
+// Route::post('/admin/register', [RegisterController::class, 'store'])->name('adminRegister');
 
 // Login
 Route::get('', [LoginController::class, 'index']);

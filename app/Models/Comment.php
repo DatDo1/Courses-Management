@@ -13,8 +13,9 @@ class Comment extends Model
     protected $table = 'comments';
     protected $fillable = [
         'content',
+        'date_posted',
         'account_id',
-        'course_id',
+        'video_id',
     ];
     public $timestamps = false;
     public function account(){

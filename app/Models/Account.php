@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Comment;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Notifications\ResetPasswordRequest;
 
 class Account extends Model
 {
@@ -15,6 +16,9 @@ class Account extends Model
         'username',
         'email',
         'password',
+        'first_name',
+        'last_name',
+        'avatar',
         'role_id'
     ];
     public $timestamps = false;
@@ -24,5 +28,10 @@ class Account extends Model
 
     public function comment(){
         return $this->hasMany(Comment::class);
+    }
+    public function notify(ResetPasswordRequest $reset){
+        return response()->json([
+            'token' => $reset
+        ]);
     }
 }

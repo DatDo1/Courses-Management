@@ -55,7 +55,19 @@ class CommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $comments = Comment::find($id);
+        $inputData = $request->all();
+        if($comments->update($inputData)){
+            return response()->json([
+                'status' => 'true',
+                'message' => 'Update Comment Successfully!!'
+            ], 200);
+        }else{
+            return response()->json([
+                'status' => 'true',
+                'message' => 'Update Comment Successfully!!'
+            ], 400);
+        }
     }
 
     /**
@@ -66,6 +78,18 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $comments = Comment::find($id);
+        if($comments->delete()){
+            return response()->json([
+                'status' => 'true',
+                'message' => 'Delete Comment Successfully!!'
+            ], 201);
+        }else{
+            return response()->json([
+                'status' => 'true',
+                'message' => 'Delete Comment Successfully!!'
+            ], 400);
+        }
+        
     }
 }

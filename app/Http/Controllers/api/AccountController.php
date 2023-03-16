@@ -15,7 +15,7 @@ class AccountController extends Controller
      */
     public function index()
     {
-        //
+        return Account::all();
     }
 
     /**
@@ -61,5 +61,16 @@ class AccountController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function checkEmail(Request $request){
+        $accountList = Account::all();
+        foreach($accountList as $account){
+            if($request->email == $account->email){
+                $account->updateOrCreate($request->all());
+                return response()->json([
+                    'data' => $account
+                ]);
+            }
+        }
     }
 }
